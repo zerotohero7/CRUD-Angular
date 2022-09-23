@@ -1,0 +1,65 @@
+<div class="container">
+  <form [formGroup]="blog">
+    <h1>Create new post</h1>
+    <div class="mb-3">
+      <label for="titre" class="form-label">Titre </label>
+      <input
+        type="text"
+        class="form-control"
+        id="titre"
+        placeholder="Enter your publication title here"
+        [class.is-invalid]="titre?.invalid && titre?.touched"
+        formControlName="titre"
+      />
+      <div class="text-danger" *ngIf="titre?.invalid && titre?.touched">
+        <div *ngIf="titre?.errors?.['required']">title is required</div>
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="description" class="form-label">Description</label>
+      <textarea
+        style="height: 200px"
+        class="form-control"
+        id="description"
+        placeholder="Enter your pulication description here"
+        [class.is-invalid]="description?.invalid && description?.touched"
+        formControlName="description"
+      ></textarea>
+      <div
+        class="text-danger"
+        *ngIf="description?.invalid && description?.touched"
+      >
+        <div *ngIf="description?.errors?.['required']">
+          Description is required
+        </div>
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="select" class="form-label">Category</label>
+      <select
+        class="form-select"
+        id="select"
+        aria-label="Default select example"
+        [class.is-invalid]="category?.invalid && category?.touched"
+        formControlName="category"
+      >
+        <option>Sport</option>
+        <option>Technologies</option>
+        <option>Économie</option>
+        <option>Société</option>
+        <option>Culture</option>
+      </select>
+      <div class="text-danger" *ngIf="category?.invalid && category?.touched">
+        <div *ngIf="category?.errors?.['required']">Select is required</div>
+      </div>
+    </div>
+
+
+   <div class="boutton1">
+     <button  (click)="getData()" routerLink="/list"  [disabled]="blog.invalid" type="submit" class="btn btn-primary">Create</button>
+     <button routerLink="/list" class="btn btn-success">list of blog</button>
+
+   </div >
+
+  </form>
+</div>
